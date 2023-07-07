@@ -32,6 +32,26 @@ describe('growUp',()=>{
     })
 })
 
+describe('increase fitness by walking by 4',()=>{
+    const pet=new Pet('Fido');
+    pet.fitness=4;
+    pet.walk();
+    expect(pet.fitness).toEqual(8);
+
+})
+
+describe('feed',()=>{
+    it('decrease hunger level by 3, minimum hunger is 0',()=>{
+        const pet = new Pet('Fido');
+        pet.hunger=10;
+        pet.feed();
+        expect(pet.hunger).toEqual(7);
+        
+    })
+})
+
+
+//REFACTORING MY CODE
 //describe('constructor',()=>{
   //  it('initial hunger of 0',()=>{
     //    const pet = new Pet('Fido');
@@ -68,10 +88,3 @@ describe('growUp',()=>{
 
 //})
 
-describe('increase fitness by walking by 4',()=>{
-    const pet=new Pet('Fido');
-    pet.fitness=4;
-    pet.walk();
-    expect(pet.fitness).toEqual(8);
-
-})

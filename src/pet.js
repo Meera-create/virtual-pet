@@ -25,6 +25,13 @@ else {
 }
 }
 
+Pet.prototype.feed=function(){
+    if (this.hunger-3>=MIN_HUNGER){
+        this.hunger-=3;}
+    else{
+        this.hunger=MIN_HUNGER;
+    }
+}
 
 
 
