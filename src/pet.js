@@ -1,7 +1,10 @@
 //magic numbers
 const MAX_FITNESS=10;
 const MIN_HUNGER=0;
-
+const HUNGRY="I am hungry"
+const UNFIT="I need a walk"
+const BOTH="I am hungry AND I need a walk"
+const FINE = "I feel great!"
 
 function Pet(name) {
     this.name=name;
@@ -33,6 +36,20 @@ Pet.prototype.feed=function(){
     }
 }
 
+Pet.prototype.checkUp=function(){
+    if(this.hunger>=5 && this.fitness<=3){
+        return BOTH
+    }
+    if(this.hunger<5 && this.fitness>3){
+        return FINE
+    }
+    if (this.fitness<=3){
+        return UNFIT
+    }
+    if(this.hunger>=5){
+        return HUNGRY }
+ 
+}
 
 
 module.exports = Pet;
