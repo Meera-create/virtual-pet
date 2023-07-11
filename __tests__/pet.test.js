@@ -1,4 +1,5 @@
 const Pet = require('../src/pet');
+const Parent = require('../src/pet');
 
 describe('constructor',()=>{
     it('returns an object',()=>{
@@ -24,7 +25,7 @@ describe('growUp',()=>{
         myPet.growUp();
         expect(myPet.age).toEqual(1);
         expect(myPet.hunger).toEqual(5);
-        expect(myPet.fitness).toEqual(3);
+        expect(myPet.fitness).toEqual(7);
     })
 })
 
@@ -41,14 +42,21 @@ describe('fitness',()=>{
 })
 
 describe('feed',()=>{
+  it('throws an error if my pet is dead',()=>{
+    const myPet = new Pet('Fido');
+    myPet.age=30;
+    expect(()=>myPet.feed()).toThrow('Your pet is no longer alive :(')
+  });
+
     it('decrease hunger level by 3, minimum hunger is 0',()=>{
         const myPet = new Pet('Fido');
-        myPet.hunger=10;
+        myPet.hunger=9;
+        myPet.age=0;
         myPet.feed();
-        expect(myPet.hunger).toEqual(7);
-        
-    })
-})
+        expect(myPet.hunger).toEqual(6);
+    });
+ 
+});
 
 
 describe('checkup',()=>{
@@ -82,6 +90,52 @@ describe('checkup',()=>{
     expect(myPet.checkUp()).toEqual("I feel great!")
   })
 })
+
+describe('isAlive',()=>{
+  it('if fitness is 0 or less, returns false',()=>{
+    const myPet=new Pet ('Fido');
+    myPet.fitness=0
+  expect(myPet.isAlive).toEqual(false)
+  })
+
+it('if hunger is 10 or more, returns false',()=>{
+  const myPet=new Pet('Fido');
+  myPet.hunger=10;
+expect(myPet.isAlive).toEqual(false);
+})
+
+
+it('if age is 30 or more, returns false',()=>{
+  const myPet=new Pet('Fido');
+  myPet.age=30;
+ expect(myPet.isAlive).toEqual(false);
+})
+
+it('age,fitness and hunger are all fine, return true',()=>{
+  const myPet=new Pet('Fido');
+  myPet.age=29;
+  myPet.fitness=1;
+  myPet.hunger=9;
+ expect(myPet.isAlive).toEqual(true);
+})
+
+})
+
+describe('parent pet',()=>{
+  xit('parent pet instance of Pet',()=>{
+    const newParent=new Parent ('Fiona');
+    expect(newParent.name).toEqual('Fiona');
+  })
+
+  
+  xit('calls method to have a child',()=>{
+    const newParent=new Parent('Fiona');
+    newParent.children='Jessica';
+    expect(newParent.haveBaby()).toEqual(['Jessica'])
+  })
+})
+
+
 
 
 
