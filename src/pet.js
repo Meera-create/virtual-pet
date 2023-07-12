@@ -13,7 +13,8 @@ function Pet(name) {
     this.age = 0;
     this.hunger = 0;
     this.fitness = 4;
-    this.childname=[]
+    this.children=[]
+  
 
 }
 
@@ -77,7 +78,7 @@ Pet.prototype.checkUp = function () {
 //add method to pet constructor 
 Pet.prototype.haveBaby=function(babyname){
     const child = new Pet (babyname)
-    return child.name;
+    return child.babyname;
     
  }
  

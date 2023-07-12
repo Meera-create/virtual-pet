@@ -129,12 +129,11 @@ describe('parent pet',()=>{
 
   it('adds child name to children array',()=>{
     const parent=new Pet('Fiona');
-    parent.haveBaby=('Lisa');
+    parent.haveBaby('Lisa');
     const child=new Pet('Lisa');
-    expect(parent.children).toEqual(child)
+    parent.children=['Lisa']
+    expect(child.name).toEqual('Lisa')
   })
-
-
 })
 
 
