@@ -122,18 +122,26 @@ it('age,fitness and hunger are all fine, return true',()=>{
 })
 
 describe('parent pet',()=>{
-  xit('parent pet instance of Pet',()=>{
-    const newParent=new Parent ('Fiona');
-    expect(newParent.name).toEqual('Fiona');
+  it('parent pet instance of Pet',()=>{
+    const parent=new Pet ('Fiona');
+    expect(parent.name).toEqual('Fiona');
   })
 
-  
-  xit('calls method to have a child',()=>{
-    const newParent=new Parent('Fiona');
-    newParent.children='Jessica';
-    expect(newParent.haveBaby()).toEqual(['Jessica'])
+  it('adds child name to children array',()=>{
+    const parent=new Pet('Fiona');
+    parent.haveBaby=('Lisa');
+    const child=new Pet('Lisa');
+    expect(parent.children).toEqual(child)
   })
+
+
 })
+
+
+
+
+  
+
 
 
 

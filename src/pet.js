@@ -13,6 +13,7 @@ function Pet(name) {
     this.age = 0;
     this.hunger = 0;
     this.fitness = 4;
+    this.childname=[]
 
 }
 
@@ -22,6 +23,8 @@ Pet.prototype = {
         return this.age < 30 && this.hunger < 10 && this.fitness > 0;
     }
 }
+
+
 
 Pet.prototype.growUp = function () {
     this.age += 1;
@@ -71,20 +74,32 @@ Pet.prototype.checkUp = function () {
 }
 
 
+//add method to pet constructor 
+Pet.prototype.haveBaby=function(babyname){
+    const child = new Pet (babyname)
+    return child.name;
+    
+ }
+ 
+//new parent instance of pet
+const parent = new Pet ();
 
-//parent instance
 
 
-class Parent extends Pet {
-    constructor(childname,name){
-        this.children=[childname];
-        super(name);
 
-    }
-    haveBaby(){
-        return this.children;
-    }
-}
+
+
+
+
+
+
+
+//create a new property on pet instance, add new property in pet to empty array
+//create a new function with baby name
+// then with name then create a new instance of pet with new name
+//havybaby function will add name to children array
+
+//test instance of pet has a children Array, test when function is called that it adds child to array
 
 
 /*
@@ -106,4 +121,4 @@ parent.prototype.children = function () {
 //child.childname=childname;
 
 
-module.exports = Pet, Parent;
+module.exports = Pet;
