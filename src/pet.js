@@ -1,12 +1,12 @@
-//magic numbers
+
 const MAX_FITNESS = 10;
 const MIN_HUNGER = 0;
-const HUNGRY = "I am hungry"
-const UNFIT = "I need a walk"
-const BOTH = "I am hungry AND I need a walk"
-const FINE = "I feel great!"
+MAX_AGE=30;
+MAX_HUNGER=10;
+MIN_FITNESS=0;
+
 const DIED = "Your pet is no longer alive :("
-const ERROR = new Error('Your pet is no longer alive :(')
+const ERROR = new Error(DIED)
 
 function Pet(name) {
     this.name = name;
@@ -21,7 +21,7 @@ function Pet(name) {
 //getter function 
 Pet.prototype = {
     get isAlive() {
-        return this.age < 30 && this.hunger < 10 && this.fitness > 0;
+        return this.age < MAX_AGE && this.hunger < MAX_HUNGER && this.fitness > MIN_FITNESS;
     }
 }
 
@@ -46,80 +46,49 @@ Pet.prototype.feed = function () {
     if (!this.isAlive) {
         throw ERROR;
     }
-
-    if (this.hunger < 0) {
-        this.hunger = MIN_HUNGER;
-    }
-
     if (this.hunger - 3 >= MIN_HUNGER) {
         this.hunger -= 3;
+    }else{
+         this.hunger = MIN_HUNGER;
     }
+
+    
 
 
 }
 
 Pet.prototype.checkUp = function () {
-    if (this.hunger >= 5 && this.fitness <= 3) {
-        return BOTH
-    }
-    if (this.hunger < 5 && this.fitness > 3) {
-        return FINE
-    }
-    if (this.fitness <= 3) {
-        return UNFIT
-    }
-    if (this.hunger >= 5) {
-        return HUNGRY
-    }
+const HUNGRY = "I am hungry"
+const UNFIT = "I need a walk"
+const HUNGRY_AND_UNFIT = `${HUNGRY} and ${UNFIT}`
+const FINE = "I feel great!"
+
+const isHungry = this.hunger >= 5
+const isUnfit = this.fitness <= 3
+
+    if (isHungry && isUnfit)return HUNGRY_AND_UNFIT;
+    
+    if (isUnfit) return UNFIT;
+    
+    if (isHungry) return HUNGRY;
+    return FINE;
+    
 
 }
 
 
-//add method to pet constructor 
+
 Pet.prototype.haveBaby=function(babyname){
-    const child = new Pet (babyname)
-    return child.babyname;
+    const child =new Pet(babyname)
+    this.children.push(child);
     
  }
  
-//new parent instance of pet
+
 const parent = new Pet ();
 
 
 
-
-
-
-
-
-
-
-
-//create a new property on pet instance, add new property in pet to empty array
-//create a new function with baby name
-// then with name then create a new instance of pet with new name
-//havybaby function will add name to children array
-
-//test instance of pet has a children Array, test when function is called that it adds child to array
-
-
-/*
-const parent = new Pet(parentname);
-parent.children = [];
-parent.name = parentname;
-
-
-parent.prototype.haveBaby = function (childname) {
-    parent.children.push(childname);
-}
-
-parent.prototype.children = function () {
-    return parent.children;
-}
-*/
-
-//const child = new Pet (childname);
-//child.childname=childname;
 
 
 module.exports = Pet;
